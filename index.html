@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="img-player">
+            <i onclick="previous();" id="left" class="fa fa-chevron-left" style="font-size:48px;color:black; cursor: pointer;"></i>
+            <div class="img">
+                <img id="img" src="NOImageAvailable.jpg" alt="IMAGGE">
+                <div class="title">
+                    <h2 id="title">Image Title</h2>
+                    <p id="disc">Some text the talk about this picture</p>
+                </div>
+            </div>
+            <i onclick="next();" id="right" class="fa fa-chevron-right" style="font-size:48px;color:black; cursor: pointer;"></i>
+        </div>
+        <div class="input-controller">
+            <div class="inputs">
+                <input id="url-input" type="text" placeholder="Insert your image url here">
+                <div class="input-group">
+                    <input id="title-input" type="text" placeholder="insert the image title here">
+                    <input id="disc-input" type="text" placeholder="insert the image discribtion here">
+                </div>
+            </div>
+            <div class="buttons">
+                <button style="background-color: mediumseagreen;" onclick="add()">Add</button>
+                <div class="input-group">
+                    <button style="background-color: mediumvioletred;" onclick="dequeue()">Dequeue</button>
+                    <button style="background-color: mediumvioletred;" onclick="pop()">Pop</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
