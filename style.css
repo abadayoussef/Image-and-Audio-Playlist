@@ -7,11 +7,17 @@ body, h1, h2, h3, h4, p{
 }
 .container{
     width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.image, .audio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
 }
 .img{
     position: relative;
@@ -73,4 +79,19 @@ body, h1, h2, h3, h4, p{
 .buttons{
     display: flex;
     flex-direction: column;
+}
+
+.audio-player{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.audio-player button{
+    outline: none;
+    border: 1px solid orangered;
+    background-color: orange;
+    color: white;
+    padding: 15px;
+    cursor: pointer;
 }

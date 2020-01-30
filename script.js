@@ -47,11 +47,7 @@ class StackAndQueue {
         if (this.pointer) {
             return this.pointer.data;
         }
-        return {
-            url: "NOImageAvailable.jpg",
-            title: "No image in the list",
-            disc: "please inser an image here to be added in the lest"
-        };
+        return null;
     }
 }
 class Element {
@@ -62,41 +58,113 @@ class Element {
     }
 }
 let list = new StackAndQueue();
+let list2 = new StackAndQueue();
 
-function add() {
-    let img = {
-        url: document.getElementById("url-input").value,
-        title: document.getElementById("title-input").value,
-        disc: document.getElementById("disc-input").value
+//load some images online in the list
+list.add({
+    url: "https://cdn.vox-cdn.com/thumbor/bBgejXeLy1mm1Nk1u4zallbrFYk=/0x0:1920x1080/1200x675/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/65642302/jbareham_191158_ply0958_decade_anime.0.jpg",
+    title: "One Punch Man",
+    disc: "The best new anime of the 2010s decade"
+});
+list.add({
+    url: "https://assets3.thrillist.com/v1/image/2855064/size/gn-gift_guide_variable_c.jpg",
+    title: "Demon Slayer",
+    disc: "Best Anime of 2019: Top New Anime Series to Watch Right Now"
+});
+list.add({
+    url: "https://www.monstersandcritics.com/wp-content/uploads/2019/09/Dr.-STONE-Season-2-release-date-Episode-24-ending-with-Stone-Wars-Dr.-STONE-manga-compared-to-the-anime-Spoilers.jpg",
+    title: "Dr. Stone",
+    disc: "Dr. STONE Season 2 release date: Anime sequel confirmed"
+});
+list.add({
+    url: "https://vignette.wikia.nocookie.net/bf9e36bc-c8b7-4ccb-8f3e-e4f958cb86a0/scale-to-width-down/800",
+    title: "My Hero Academi",
+    disc: ""
+});
+//show the pre loaded images
+show("image");
+
+
+//load some songs those are exist online
+list2.add({
+    url: "https://opengameart.org/sites/default/files/wintervillage.ogg",
+    title: "Winter Village",
+    album: "RPG town theme"
+});
+list2.add({
+    url: "https://opengameart.org/sites/default/files/jamuary2020_day27.ogg",
+    title: "Bitter sweet-27",
+    album: ""
+});
+list2.add({
+    url: "https://opengameart.org/sites/default/files/Background%20Music%202.ogg",
+    title: "The Ice Caves",
+    album: "Background Music 2"
+});
+list2.add({
+    url: "https://opengameart.org/sites/default/files/fromtheruins.ogg",
+    title: "",
+    album: ""
+});
+
+function add(type) {
+    if (type === "image") {
+        list.add({
+            url: document.getElementById("url-input").value,
+            title: document.getElementById("title-input").value,
+            disc: document.getElementById("disc-input").value
+        });
+        show(type);
+    } else if (type === "audio") {
+        list2.add({
+            url: document.getElementById("url-audio").value,
+            title: document.getElementById("title-audio").value,
+            album: document.getElementById("album-audio").value
+        });
     }
-    list.add(img);
-    show();
-    document.getElementById("url-input").value = "",
-    document.getElementById("title-input").value = "",
-    document.getElementById("disc-input").value = "";
-
 }
 
-function show() {
-    document.getElementById("img").src = list.show().url || "NOImageAvailable.jpg";
-    document.getElementById("title").innerHTML = list.show().title || "No title specified";
-    document.getElementById("disc").innerHTML = list.show().disc ||"No discription specified";
+
+function show(type) {
+    if (type === "image") {
+        if (list.show()) {
+            document.getElementById("img").src = list.show().url || "NOImageAvailable.jpg";
+            document.getElementById("title").innerHTML = list.show().title || "";
+            document.getElementById("disc").innerHTML = list.show().disc || "";
+        } else {
+            document.getElementById("img").src = "NOImageAvailable.jpg";
+            document.getElementById("title").innerHTML = "";
+            document.getElementById("disc").innerHTML = "";
+        }
+    }
+    if (type === "audio") {
+        if (list2.show()) {
+            document.getElementById("audio").src = list2.show().url || "";
+            document.getElementById("audio-info").innerHTML = (list2.show().title || "No title") + " - " + (list2.show().album || "No album");
+            document.getElementById("audio").play();
+        } else {
+            document.getElementById("audio").src = "";
+            document.getElementById("audio-info").innerHTML = "No title - No album";
+        }
+    }
 }
 
-function next() {
-    list.next();
-    show();
+function next(type) {
+    type === "image" ? list.next() : list2.next();
+    show(type);
 }
 
-function previous() {
-    list.previous();
-    show();
+function previous(type) {
+    type === "image" ? list.previous() : list2.previous();
+    show(type);
 }
-function pop(){
-    list.pop();
-    show();
+
+function pop(type) {
+    type === "image" ? list.pop() : list2.pop();
+    show(type);
 }
-function dequeue(){
-    list.dequeue();
-    show();
+
+function dequeue(type) {
+    type === "image" ? list.dequeue() : list2.dequeue();
+    show(type);
 }
