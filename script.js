@@ -149,6 +149,9 @@ function show(type) {
     }
 }
 
+show("audio");
+document.getElementById("audio").pause();
+
 function next(type) {
     type === "image" ? list.next() : list2.next();
     show(type);
